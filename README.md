@@ -47,6 +47,7 @@ Start the development server:
 
 ```bash
 npm start
+```
 
 The application will be accessible at http://localhost:3000.
 
@@ -78,3 +79,5 @@ Authentication-Using-Passport/
 ├── app.js
 ├── package.json
 └── .gitignore
+```
+
