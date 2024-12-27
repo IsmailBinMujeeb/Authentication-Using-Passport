@@ -28,3 +28,11 @@ Ensure you have the following installed:
 
    ```bash
    cd Authentication-Using-Passport
+
+
+## Configuration 
+
+1. Create a .env file in the root directory and add the following environment variables:
+
+<code>PORT=3000
+SESSION_SECRET=your_secret_key</code>
