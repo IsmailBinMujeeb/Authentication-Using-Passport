@@ -1,6 +1,8 @@
 const express = require('express');
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
+const conn = require("./config/db");
+const userModel = require("./models/user-model");
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const session = require("express-session");
@@ -12,17 +14,9 @@ const indexRouter = require('./routes/index');
 const loginRouter = require("./routes/loginRouter");
 const registerRouter = require("./routes/registerRouter");
 const loginPostRouter = require("./routes/loginPostRouter");
+const registerPostRouter = require("./routes/registerPostRouter");
 
 const app = express();
-
-const users = [
-    {
-        id: 1,
-        username: 'testuser',
-        password: bcrypt.hashSync('#include8AUTH', 10), // Password hashed
-    },
-];
-
 
 app.set("view engine", "ejs")
 
@@ -44,9 +38,11 @@ app.use(session({
 app.use(passport.initialize());
 app.use(passport.session());
 
-passport.use(new LocalStrategy((username, password, done)=>{
+passport.use(new LocalStrategy(async (username, password, done)=>{
 
-    const user = users.find(u => u.username === username);
+    const regExpUsername = new RegExp(`^${username}$`, 'i');
+
+    const user = await userModel.findOne({username: regExpUsername});
 
     if (!user) {
         return done(null, false, {message: "Incorrect Username or Password"});
@@ -67,9 +63,9 @@ passport.serializeUser((user, done)=>{
     done(null, user.id)
 })
 
-passport.deserializeUser((id, done)=>{
+passport.deserializeUser(async (id, done)=>{
 
-    const user = users.find(u => u.id === id);
+    const user = await userModel.findOne({_id: id});
 
     done(null, user);
 })
@@ -78,5 +74,6 @@ app.use('/', indexRouter);
 app.use("/login", loginRouter);
 app.use("/register", registerRouter);
 app.use("/login", loginPostRouter);
+app.use("/register", registerPostRouter);
 
 module.exports = app;
