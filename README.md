@@ -23,3 +23,8 @@ Ensure you have the following installed:
 
    ```bash
    git clone https://github.com/IsmailBinMujeeb/Authentication-Using-Passport.git
+
+2. Navigate to the project directory:
+
+   ```bash
+   cd Authentication-Using-Passport
