@@ -34,5 +34,6 @@ Ensure you have the following installed:
 
 1. Create a .env file in the root directory and add the following environment variables:
 
-```PORT=3000
-SESSION_SECRET=your_secret_key```
+```env
+PORT=3000
+SESSION_SECRET=your_secret_key
