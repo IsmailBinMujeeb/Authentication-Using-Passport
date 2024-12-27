@@ -36,7 +36,7 @@ Ensure you have the following installed:
 
 ```env
 PORT=3000
-SESSION_SECRET=your_secret_key
+SESSION_SECRET=your_secret_key```
 
 2. Ensure your MongoDB server is running and accessible.
 
