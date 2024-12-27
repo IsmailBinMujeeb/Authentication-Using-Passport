@@ -15,6 +15,7 @@ const loginRouter = require("./routes/loginRouter");
 const registerRouter = require("./routes/registerRouter");
 const loginPostRouter = require("./routes/loginPostRouter");
 const registerPostRouter = require("./routes/registerPostRouter");
+const logoutRouter = require("./routes/logout");
 
 const app = express();
 
@@ -75,5 +76,6 @@ app.use("/login", loginRouter);
 app.use("/register", registerRouter);
 app.use("/login", loginPostRouter);
 app.use("/register", registerPostRouter);
+app.use("/logout", logoutRouter);
 
 module.exports = app;
