@@ -1,215 +1,210 @@
 * {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
 }
 
 body {
-  font-family: 'Arial', sans-serif;
-  background: linear-gradient(135deg, #4facfe, #00f2fe);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
-  color: #333;
+    font-family: 'Arial', sans-serif;
+    background: linear-gradient(135deg, #4facfe, #00f2fe);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    color: #333;
 }
 
-a{
+a {
 
-  color: white;
-  text-decoration: none;
+    color: white;
+    text-decoration: none;
 }
 
 /* Login Page Style */
 
 .login-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  max-width: 400px;
-  background-color: #fff;
-  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 400px;
+    background-color: #fff;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 20px;
 }
 
 .login-box {
-  width: 100%;
+    width: 100%;
 }
 
 .title {
-  font-size: 24px;
-  text-align: center;
-  margin-bottom: 20px;
-  color: #007bff;
+    font-size: 24px;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #007bff;
 }
 
 .input-group {
-  margin-bottom: 15px;
+    margin-bottom: 15px;
 }
 
 .input-group label {
-  display: block;
-  font-size: 14px;
-  margin-bottom: 5px;
-  color: #555;
+    display: block;
+    font-size: 14px;
+    margin-bottom: 5px;
+    color: #555;
 }
 
 .input-group input {
-  width: 100%;
-  padding: 10px;
-  font-size: 14px;
-  border: 1px solid #ddd;
-  border-radius: 4px;
-  transition: border-color 0.3s ease;
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    transition: border-color 0.3s ease;
 }
 
 .input-group input:focus {
-  border-color: #007bff;
-  outline: none;
+    border-color: #007bff;
+    outline: none;
 }
 
 .btn {
-  display: block;
-  width: 100%;
-  padding: 10px;
-  font-size: 16px;
-  background-color: #007bff;
-  color: #fff;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+    display: block;
+    width: 100%;
+    padding: 10px;
+    margin: 5px 0px;
+    font-size: 16px;
+    background-color: #007bff;
+    color: #fff;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .btn:hover {
-  background-color: #0056b3;
-}
-
-.footer {
-  margin-top: 15px;
-  text-align: center;
-}
-
-.footer a {
-  color: #007bff;
-  text-decoration: none;
-  font-size: 14px;
-}
-
-.footer a:hover {
-  text-decoration: underline;
+    background-color: #0056b3;
 }
 
 /* Register Page Style */
 
 .register-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  max-width: 500px;
-  background-color: #fff;
-  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
-  border-radius: 8px;
-  padding: 20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 500px;
+    background-color: #fff;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    padding: 20px;
 }
 
 .register-box {
-  width: 100%;
+    width: 100%;
 }
 
 .footer p {
-  margin-top: 15px;
-  font-size: 14px;
-  color: #555;
+    margin-top: 15px;
+    font-size: 14px;
+    color: #555;
 }
 
 /* Profile Page Style */
 
 .profile-container {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  max-width: 600px;
-  background-color: #fff;
-  box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
-  border-radius: 12px;
-  padding: 30px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    max-width: 600px;
+    background-color: #fff;
+    box-shadow: 0px 4px 20px rgba(0, 0, 0, 0.1);
+    border-radius: 12px;
+    padding: 30px;
 }
 
 .profile-box {
-  width: 100%;
+    width: 100%;
 }
 
 .title {
-  font-size: 28px;
-  text-align: center;
-  margin-bottom: 20px;
-  color: #007bff;
-  font-weight: bold;
+    font-size: 28px;
+    text-align: center;
+    margin-bottom: 20px;
+    color: #007bff;
+    font-weight: bold;
 }
 
 .profile-info {
-  margin-bottom: 20px;
-  padding: 10px;
-  background: #f9f9f9;
-  border-radius: 8px;
-  border: 1px solid #ddd;
+    margin-bottom: 20px;
+    padding: 10px;
+    background: #f9f9f9;
+    border-radius: 8px;
+    border: 1px solid #ddd;
 }
 
 .info-group {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 15px;
-  font-size: 16px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 15px;
+    font-size: 16px;
 }
 
 .info-group label {
-  font-weight: bold;
-  color: #555;
+    font-weight: bold;
+    color: #555;
 }
 
 .info-group span {
-  color: #333;
-  font-weight: 500;
+    color: #333;
+    font-weight: 500;
 }
 
 .profile-actions {
-  display: flex;
-  justify-content: space-between;
-  gap: 10px;
+    display: flex;
+    justify-content: space-between;
+    gap: 10px;
 }
 
 .btn {
-  flex: 1;
-  padding: 10px;
-  font-size: 16px;
-  font-weight: bold;
-  text-align: center;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+    font-weight: bold;
+    text-align: center;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
 }
 
 .update-btn {
-  background-color: #007bff;
-  color: #fff;
+    background-color: #007bff;
+    color: #fff;
 }
 
 .update-btn:hover {
-  background-color: #0056b3;
+    background-color: #0056b3;
 }
 
 .logout-btn {
-  background-color: #dc3545;
-  color: #fff;
+    background-color: #dc3545;
+    color: #fff;
 }
 
 .logout-btn:hover {
-  background-color: #a71d2a;
+    background-color: #a71d2a;
+}
+
+.google-btn {
+
+    background-color: #dc3545;
+}
+
+.google-btn:hover {
+    background-color: #a71d2a;
 }

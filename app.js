@@ -1,6 +1,7 @@
 const express = require('express');
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
+const GoogleStrategy = require('passport-google-oauth20').Strategy;
 const conn = require("./config/db");
 const userModel = require("./models/user-model");
 const path = require('path');
@@ -17,6 +18,8 @@ const registerRouter = require("./routes/registerRouter");
 const loginPostRouter = require("./routes/loginPostRouter");
 const registerPostRouter = require("./routes/registerPostRouter");
 const logoutRouter = require("./routes/logout");
+const googleAuthLoginRouter = require("./routes/googleAuthLoginRouter");
+const googleAuthCallbackRouter = require("./routes/googleAuthCallback");
 
 const app = express();
 
@@ -58,7 +61,31 @@ passport.use(new LocalStrategy(async (username, password, done)=>{
 
         return done(null, user);
     })
-}))
+}));
+
+passport.use(new GoogleStrategy(
+    {
+        clientID: process.env.client_id,
+        clientSecret: process.env.client_secret,
+        callbackURL: 'http://localhost:3000/auth/google/callback'
+    }, 
+
+    async (accessToken, refreshToken, profile, done)=>{
+
+        try {
+            
+            const user = await userModel.findOneAndUpdate({googleId: profile.id}, {
+                fullname: profile.displayName,
+                email: profile.emails[0].value,
+                username: profile.displayName.toLowerCase().replace(/[^a-z0-9]/g, "_") + "_" + profile.id,
+            }, {new: true, upsert: true});
+
+            done(null, user)
+        } catch (error) {
+            done(error, false)
+        }
+    }
+))
 
 passport.serializeUser((user, done)=>{
 
@@ -80,5 +107,7 @@ app.use("/register", registerRouter);
 app.use("/login", loginPostRouter);
 app.use("/register", registerPostRouter);
 app.use("/logout", logoutRouter);
+app.use("/", googleAuthLoginRouter);
+app.use("/", googleAuthCallbackRouter);
 
 module.exports = app;
