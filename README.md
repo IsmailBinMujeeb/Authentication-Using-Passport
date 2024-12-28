@@ -37,6 +37,8 @@ Ensure you have the following installed:
 ```env
 PORT=3000
 SESSION_SECRET=your_secret_key
+client_id=your_google_client_id
+client_secret=your_google_client_secret
 ```
 
 2. Ensure your MongoDB server is running and accessible.
@@ -51,3 +53,34 @@ npm start
 
 The application will be accessible at http://localhost:3000.
 
+```
+Authentication-Using-Passport/
+├── bin/
+│   └── www
+├── config/
+│   └── db.js
+├── models/
+│   └── user-model.js
+├── public/
+│   └── stylesheets/
+│       └── style.css
+├── routes/
+│   ├── googleAuthCallback.js
+│   ├── googleAuthLoginRouter.js
+│   ├── index.js
+│   ├── loginPostRouter.js
+│   ├── loginRouter.js
+│   ├── logout.js
+│   ├── registerPostRouter.js
+│   └── registerRouter.js
+├── utils/
+│   └── isAuthenticated.js
+├── views/
+│   ├── index.ejs
+│   ├── login.ejs
+│   └── register.ejs
+├── .gitignore
+├── app.js
+├── package.json
+└── README..md
+```
