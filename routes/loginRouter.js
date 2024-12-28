@@ -3,7 +3,9 @@ const router = require("express").Router();
 router.get("/", (req, res)=>{
 
     try {
-        res.render("login");
+        const err = req.flash("error");
+        const success = req.flash("success");
+        res.render("login", {err, success});
     } catch (error) {
         console.log(error)
     }

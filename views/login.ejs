@@ -19,6 +19,12 @@
                     <label for="password">Password</label>
                     <input type="password" id="password" name="password" required>
                 </div>
+                <% if (err) { %>
+                    <p style="color: rgb(255, 76, 76); text-align: center; margin: 5px 0px;"><%= err %></p>
+                <% } %>
+                <% if (success) { %>
+                    <p style="color: rgb(76, 255, 76); text-align: center; margin: 5px 0px;"><%= success %></p>
+                <% } %>
                 <button type="submit" class="btn">Login</button>
                 <div class="footer">
                     <a href="#">Forgot your password?</a>

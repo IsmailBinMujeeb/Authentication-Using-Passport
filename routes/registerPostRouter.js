@@ -12,7 +12,8 @@ router.post("/", async (req, res, next) => {
         const user = await userModel.findOne({ username: regExpUsername });
 
         if (user) {
-            return res.status(400).send("User already exist");
+            req.flash("error", "User already exist.")
+            return res.redirect("/login");
         }
 
         bcrypt.hash(password, 10, async (err, hash) => {

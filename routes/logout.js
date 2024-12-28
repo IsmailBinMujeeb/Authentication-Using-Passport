@@ -6,6 +6,7 @@ router.get("/", (req, res)=>{
 
         if(err) return res.status(500).send("Error while logging out.");
 
+        req.flash("success", "You have logout successfuly.");
         res.redirect("/login");
     })
 })

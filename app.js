@@ -6,6 +6,7 @@ const userModel = require("./models/user-model");
 const path = require('path');
 const cookieParser = require('cookie-parser');
 const session = require("express-session");
+const flash = require("connect-flash");
 const logger = require('morgan');
 const bcrypt = require("bcryptjs");
 require("dotenv").config();
@@ -53,7 +54,7 @@ passport.use(new LocalStrategy(async (username, password, done)=>{
 
         if(err) return done(err);
 
-        if(!isMatch) return done(null, false, "Incorrect Username or Password");
+        if(!isMatch) return done(null, false, {message: "Incorrect Username or Password"});
 
         return done(null, user);
     })
@@ -70,6 +71,8 @@ passport.deserializeUser(async (id, done)=>{
 
     done(null, user);
 })
+
+app.use(flash());
 
 app.use('/', indexRouter);
 app.use("/login", loginRouter);
