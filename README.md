@@ -51,33 +51,3 @@ npm start
 
 The application will be accessible at http://localhost:3000.
 
-## Project Structure
-
-The project's structure is as follows:
-
-```
-Authentication-Using-Passport/
-├── bin/
-│   └── www
-├── config/
-│   └── passport.js
-├── models/
-│   └── user.js
-├── public/
-│   └── stylesheets/
-│       └── style.css
-├── routes/
-│   ├── index.js
-│   └── users.js
-├── utils/
-│   └── auth.js
-├── views/
-│   ├── error.ejs
-│   ├── index.ejs
-│   ├── layout.ejs
-│   └── login.ejs
-├── app.js
-├── package.json
-└── .gitignore
-```
-
