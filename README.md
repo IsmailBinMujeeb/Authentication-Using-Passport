@@ -7,7 +7,7 @@ This project demonstrates how to implement authentication in a Node.js applicati
 - User registration and login
 - Session management
 - Protected routes
-- Local strategy authentication with Passport.js
+- Local and Google strategy authentication with Passport.js
 
 ## Prerequisites
 
@@ -52,6 +52,8 @@ npm start
 ```
 
 The application will be accessible at http://localhost:3000.
+
+## Project Structure
 
 ```
 Authentication-Using-Passport/
