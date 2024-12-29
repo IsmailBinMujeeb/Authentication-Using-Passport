@@ -7,7 +7,7 @@ This project demonstrates how to implement authentication in a Node.js applicati
 - User registration and login
 - Session management
 - Protected routes
-- Local and Google strategy authentication with Passport.js
+- Local, Google and Github strategy authentication with Passport.js
 
 ## Prerequisites
 
@@ -36,9 +36,11 @@ Ensure you have the following installed:
 
 ```env
 PORT=3000
-SESSION_SECRET=your_secret_key
-client_id=your_google_client_id
-client_secret=your_google_client_secret
+SESSION_SECRET=your_secret
+GOOGLE_CLIENT_ID=your_google_client_id
+GOOGLE_CLIENT_SECRET=your_google_client_secret
+GITHUB_CLIENT_ID=your_github_client_id
+GITHUB_CLIENT_SECRET=your_github_client_secret
 ```
 
 2. Ensure your MongoDB server is running and accessible.
@@ -67,6 +69,8 @@ Authentication-Using-Passport/
 │   └── stylesheets/
 │       └── style.css
 ├── routes/
+│   ├── githubAuthCallbackRouter.js
+│   ├── githubAuthLoginRouter.js
 │   ├── googleAuthCallback.js
 │   ├── googleAuthLoginRouter.js
 │   ├── index.js
