@@ -36,31 +36,40 @@ app.use(session({
     secret: process.env.session_secret,
     saveUninitialized: false,
     resave: false,
-    cookie: {maxAge: 9000000000000},
+    cookie: { maxAge: 9000000000000 },
 
 }))
 
 app.use(passport.initialize());
 app.use(passport.session());
 
-passport.use(new LocalStrategy(async (username, password, done)=>{
+passport.use(new LocalStrategy(async (username, password, done) => {
 
-    const regExpUsername = new RegExp(`^${username}$`, 'i');
+    try {
+        const regExpUsername = new RegExp(`^${username}$`, 'i');
 
-    const user = await userModel.findOne({username: regExpUsername});
+        const user = await userModel.findOne({ username: regExpUsername });
 
-    if (!user) {
-        return done(null, false, {message: "Incorrect Username or Password"});
+        if (!user) {
+            return done(null, false, { message: "Incorrect Username or Password" });
+        }
+
+        if (!user.password) {
+            return done(null, false, { message: "Login with Google"})
+        }
+
+        bcrypt.compare(password, user.password, (err, isMatch) => {
+
+            if (err) return done(err);
+
+            if (!isMatch) return done(null, false, { message: "Incorrect Username or Password" });
+
+            return done(null, user);
+        })
+    } catch (error) {
+        console.log(error)
     }
 
-    bcrypt.compare(password, user.password, (err, isMatch)=>{
-
-        if(err) return done(err);
-
-        if(!isMatch) return done(null, false, {message: "Incorrect Username or Password"});
-
-        return done(null, user);
-    })
 }));
 
 passport.use(new GoogleStrategy(
@@ -68,17 +77,17 @@ passport.use(new GoogleStrategy(
         clientID: process.env.client_id,
         clientSecret: process.env.client_secret,
         callbackURL: 'http://localhost:3000/auth/google/callback'
-    }, 
+    },
 
-    async (accessToken, refreshToken, profile, done)=>{
+    async (accessToken, refreshToken, profile, done) => {
 
         try {
-            
-            const user = await userModel.findOneAndUpdate({googleId: profile.id}, {
+
+            const user = await userModel.findOneAndUpdate({ googleId: profile.id }, {
                 fullname: profile.displayName,
                 email: profile.emails[0].value,
                 username: profile.displayName.toLowerCase().replace(/[^a-z0-9]/g, "_") + "_" + profile.id,
-            }, {new: true, upsert: true});
+            }, { new: true, upsert: true });
 
             done(null, user)
         } catch (error) {
@@ -87,14 +96,14 @@ passport.use(new GoogleStrategy(
     }
 ))
 
-passport.serializeUser((user, done)=>{
+passport.serializeUser((user, done) => {
 
     done(null, user.id)
 })
 
-passport.deserializeUser(async (id, done)=>{
+passport.deserializeUser(async (id, done) => {
 
-    const user = await userModel.findOne({_id: id});
+    const user = await userModel.findOne({ _id: id });
 
     done(null, user);
 })

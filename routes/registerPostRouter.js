@@ -9,11 +9,18 @@ router.post("/", async (req, res, next) => {
 
         const regExpUsername = new RegExp(`^${username}$`, 'i');
 
-        const user = await userModel.findOne({ username: regExpUsername });
+        const userWithUsername = await userModel.findOne({ username: regExpUsername });
 
-        if (user) {
-            req.flash("error", "User already exist.")
-            return res.redirect("/login");
+        if (userWithUsername) {
+            req.flash("error", "Username is not available.")
+            return res.redirect("/register");
+        }
+
+        const userWithEmail = await userModel.findOne({ email });
+
+        if (userWithEmail) {
+            req.flash("error", "user with this email id is already exist.")
+            return res.redirect("/register");
         }
 
         bcrypt.hash(password, 10, async (err, hash) => {
@@ -33,9 +40,6 @@ router.post("/", async (req, res, next) => {
                 return res.redirect("/")
             })
         })
-
-
-
     } catch (error) {
         console.log(error)
     }

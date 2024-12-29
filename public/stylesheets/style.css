@@ -16,7 +16,7 @@ body {
 
 a {
 
-    color: white;
+    color: #4facfe;
     text-decoration: none;
 }
 
@@ -170,6 +170,20 @@ a {
     gap: 10px;
 }
 
+.errorMsg{
+
+    color: rgb(255, 76, 76);
+    text-align: center;
+    margin: 5px 0px;
+}
+
+.successMsg{
+
+    color: rgb(39, 228, 39);
+    text-align: center;
+    margin: 5px 0px;
+}
+
 .btn {
     flex: 1;
     padding: 10px;
@@ -180,6 +194,10 @@ a {
     border-radius: 4px;
     cursor: pointer;
     transition: background-color 0.3s ease;
+
+    & a{
+        color: #fff;
+    }
 }
 
 .update-btn {

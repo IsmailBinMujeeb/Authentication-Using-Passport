@@ -27,6 +27,11 @@
                     <label for="password">Password</label>
                     <input type="password" id="password" name="password" required>
                 </div>
+
+                <% if (err) { %>
+                    <p class="errorMsg"><%= err %></p>
+                <% } %>
+
                 <button type="submit" class="btn">Register</button>
                 <div class="footer">
                     <p>Already have an account? <a href="/login">Login</a></p>

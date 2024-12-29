@@ -20,13 +20,14 @@
                     <input type="password" id="password" name="password" required>
                 </div>
                 <% if (err) { %>
-                    <p style="color: rgb(255, 76, 76); text-align: center; margin: 5px 0px;"><%= err %></p>
+                    <p class="errorMsg"><%= err %></p>
                 <% } %>
                 <% if (success) { %>
-                    <p style="color: rgb(39, 228, 39); text-align: center; margin: 5px 0px;"><%= success %></p>
+                    <p class="successMsg"><%= success %></p>
                 <% } %>
                 <button type="submit" class="btn">Login</button>
                 <a href="/auth/google" class="btn google-btn">Google</a>
+                <p>Or create a new account by <a href="/register">Register</a></p>
             </form>
         </div>
     </div>
