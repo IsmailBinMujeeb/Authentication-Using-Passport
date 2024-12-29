@@ -218,11 +218,31 @@ a {
     background-color: #a71d2a;
 }
 
+.login-opts{
+
+    display: flex;
+    flex-wrap: nowrap;
+    align-items: center;
+    justify-content: space-around;
+    gap: 10px;
+}
+
 .google-btn {
 
     background-color: #dc3545;
+    flex: 1;
 }
 
 .google-btn:hover {
     background-color: #a71d2a;
+}
+
+.github-btn {
+
+    background-color: #2d2d2d;
+    flex: 1;
+}
+
+.github-btn:hover {
+    background-color: #8a8a8a;
 }

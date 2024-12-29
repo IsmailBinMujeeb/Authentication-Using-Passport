@@ -2,6 +2,7 @@ const express = require('express');
 const passport = require("passport");
 const LocalStrategy = require("passport-local").Strategy;
 const GoogleStrategy = require('passport-google-oauth20').Strategy;
+const githubStrategy = require('passport-github').Strategy;
 const conn = require("./config/db");
 const userModel = require("./models/user-model");
 const path = require('path');
@@ -20,6 +21,8 @@ const registerPostRouter = require("./routes/registerPostRouter");
 const logoutRouter = require("./routes/logout");
 const googleAuthLoginRouter = require("./routes/googleAuthLoginRouter");
 const googleAuthCallbackRouter = require("./routes/googleAuthCallback");
+const githubAuthLoginRouter = require("./routes/githubAuthLoginRouter");
+const githubAuthCallbackRouter = require("./routes/githubAuthCallbackRouter");
 
 const app = express();
 
@@ -33,7 +36,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(session({
 
-    secret: process.env.session_secret,
+    secret: process.env.SESSION_SECRET,
     saveUninitialized: false,
     resave: false,
     cookie: { maxAge: 9000000000000 },
@@ -74,16 +77,16 @@ passport.use(new LocalStrategy(async (username, password, done) => {
 
 passport.use(new GoogleStrategy(
     {
-        clientID: process.env.client_id,
-        clientSecret: process.env.client_secret,
-        callbackURL: 'http://localhost:3000/auth/google/callback'
+        clientID: process.env.GOOGLE_CLIENT_ID,
+        clientSecret: process.env.GOOGLE_CLIENT_SECRET,
+        callbackURL: 'http://localhost:3000/auth/google/callback',
     },
 
     async (accessToken, refreshToken, profile, done) => {
 
         try {
 
-            const user = await userModel.findOneAndUpdate({ googleId: profile.id }, {
+            const user = await userModel.findOneAndUpdate({ profileId: profile.id }, {
                 fullname: profile.displayName,
                 email: profile.emails[0].value,
                 username: profile.displayName.toLowerCase().replace(/[^a-z0-9]/g, "_") + "_" + profile.id,
@@ -95,6 +98,36 @@ passport.use(new GoogleStrategy(
         }
     }
 ))
+
+console.log(process.env.GITHUB_CLIENT_SECRET, process.env.GITHUB_CLIENT_ID)
+
+passport.use(new githubStrategy(
+    {
+        clientID: process.env.GITHUB_CLIENT_ID,
+        clientSecret: process.env.GITHUB_CLIENT_SECRET,
+        callbackURL: '/auth/github/callback',
+        scope: ["user:email"],
+    }, 
+    
+    async (accessToken, refreshToken, profile, done)=>{
+
+        try {
+            
+            const user = await userModel.findOneAndUpdate({profileId: profile.id}, {
+
+                fullname: profile.displayName || profile.username,
+                email: profile.email?.[0]?.value || null,
+                username: profile.username
+                
+            }, {new: true, upsert: true});
+
+            return done(null, user);
+
+        } catch (error) {
+            done(error, false);
+        }
+    })
+);
 
 passport.serializeUser((user, done) => {
 
@@ -118,5 +151,7 @@ app.use("/register", registerPostRouter);
 app.use("/logout", logoutRouter);
 app.use("/", googleAuthLoginRouter);
 app.use("/", googleAuthCallbackRouter);
+app.use("/auth/github", githubAuthLoginRouter);
+app.use("/auth/github/callback", githubAuthCallbackRouter);
 
 module.exports = app;

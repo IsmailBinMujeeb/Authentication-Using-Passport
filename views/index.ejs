@@ -17,7 +17,7 @@
                 </div>
                 <div class="info-group">
                     <label for="email">Email Address:</label>
-                    <span id="email"><%= user.email %></span>
+                    <span id="email"><%= user.email || "Not Provided" %></span>
                 </div>
                 <div class="info-group">
                     <label for="username">Username:</label>
@@ -26,7 +26,7 @@
             </div>
             <div class="profile-actions">
                 <button class="btn update-btn">Edit Profile</button>
-                <button class="btn logout-btn"><a href="/logout">Logout</a></button>
+                <a href="/logout" class="btn logout-btn">Logout</a>
             </div>
         </div>
     </div>
