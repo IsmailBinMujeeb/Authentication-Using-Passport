@@ -29,6 +29,11 @@ Ensure you have the following installed:
    ```bash
    cd Authentication-Using-Passport
 
+3. Install dependencies:
+
+   ````bash
+   npm i
+
 
 ## Configuration 
 
