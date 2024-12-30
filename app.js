@@ -23,6 +23,8 @@ const googleAuthLoginRouter = require("./routes/googleAuthLoginRouter");
 const googleAuthCallbackRouter = require("./routes/googleAuthCallback");
 const githubAuthLoginRouter = require("./routes/githubAuthLoginRouter");
 const githubAuthCallbackRouter = require("./routes/githubAuthCallbackRouter");
+const editProfileRouter = require("./routes/editProfileRouter");
+const editProfilePostRouter = require("./routes/editProfilePostRouter");
 
 const app = express();
 
@@ -99,8 +101,6 @@ passport.use(new GoogleStrategy(
     }
 ))
 
-console.log(process.env.GITHUB_CLIENT_SECRET, process.env.GITHUB_CLIENT_ID)
-
 passport.use(new githubStrategy(
     {
         clientID: process.env.GITHUB_CLIENT_ID,
@@ -153,5 +153,7 @@ app.use("/", googleAuthLoginRouter);
 app.use("/", googleAuthCallbackRouter);
 app.use("/auth/github", githubAuthLoginRouter);
 app.use("/auth/github/callback", githubAuthCallbackRouter);
+app.use('/edit-profile', editProfileRouter);
+app.use('/edit-profile', editProfilePostRouter);
 
 module.exports = app;
